@@ -1,12 +1,13 @@
 import 'dart:developer';
 
-import 'package:chatterbox/Network/APIs.dart';
-import 'package:chatterbox/Screens/home_screen.dart';
-import 'package:chatterbox/Screens/login_screen.dart';
-import 'package:chatterbox/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
+
+import '../Network/APIs.dart';
+import '../main.dart';
+import 'home_screen.dart';
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

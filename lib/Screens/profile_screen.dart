@@ -2,15 +2,17 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chatterbox/Helpers/dialogs.dart';
-import 'package:chatterbox/Models/chat_user.dart';
-import 'package:chatterbox/Network/APIs.dart';
-import 'package:chatterbox/Screens/login_screen.dart';
-import 'package:chatterbox/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../Helpers/dialogs.dart';
+import '../Models/chat_user.dart';
+import '../Network/APIs.dart';
+import '../main.dart';
+import 'login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final ChatUser user;
@@ -38,6 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //for showing progress dialog
             Dialogs.showProgressBar(context);
 
+            await APIs.updateActiveStatus(false);
+
             log("\nUser has signed out");
             await APIs.auth.signOut();
             await GoogleSignIn().signOut();
@@ -47,6 +51,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             //for moving to home screen
             Navigator.pop(context);
+
+            APIs.auth = FirebaseAuth.instance;
 
             //replacing home screen with login screen
             Navigator.pushReplacement(

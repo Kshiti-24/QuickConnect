@@ -1,13 +1,14 @@
 import 'dart:developer';
 
-import 'package:chatterbox/Helpers/dialogs.dart';
-import 'package:chatterbox/Network/APIs.dart';
-import 'package:chatterbox/Screens/home_screen.dart';
-import 'package:chatterbox/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
+
+import '../Helpers/dialogs.dart';
+import '../Network/APIs.dart';
+import '../main.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -74,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return await APIs.auth.signInWithCredential(credential);
     } catch (e) {
       log('\n_signInWithGoogle: $e');
-      Dialogs.showSnackbar(context, 'Something Went Wrong (Check Internet!)');
+      Dialogs.showSnackbar(context, e.toString());
       return null;
     }
   }
