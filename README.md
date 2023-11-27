@@ -1,4 +1,4 @@
-# chatterbox
+# QuickConnect
 
 A new Flutter project.
 
